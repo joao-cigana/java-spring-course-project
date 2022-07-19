@@ -1,12 +1,11 @@
 package com.joaocigana.springproject.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-@Entity (name = "Users")
+@Entity (name = "user_table")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -18,6 +17,9 @@ public class User implements Serializable {
     String phone;
     String password;
 
+    @OneToMany (mappedBy = "client")
+    private List<Order> orders = new ArrayList();
+
     public User(){
 
     }
@@ -28,6 +30,10 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.password = password;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
     }
 
     public Long getId() {
