@@ -11,17 +11,21 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
     private Double price;
     private String imgURL;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "product_category",
+    joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "categoty_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public Product(){}
+    public Product() {
+    }
 
     public Product(Long id, String name, String description, Double price, String imgURL) {
         this.id = id;
