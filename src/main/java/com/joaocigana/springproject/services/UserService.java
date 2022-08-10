@@ -2,8 +2,11 @@ package com.joaocigana.springproject.services;
 
 import com.joaocigana.springproject.entities.User;
 import com.joaocigana.springproject.repositories.UserRepository;
+import com.joaocigana.springproject.resources.exceptions.DatabaseException;
 import com.joaocigana.springproject.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +33,13 @@ public class UserService {
     }
 
     public void delete(Long id){
+        try{
         repository.deleteById(id);
+        } catch (EmptyResultDataAccessException ex){
+            throw new ResourceNotFoundException(id);
+        } catch (DataIntegrityViolationException ex){
+            throw new DatabaseException(ex.getMessage());
+        }
     }
 
     public User update(Long id, User user){
