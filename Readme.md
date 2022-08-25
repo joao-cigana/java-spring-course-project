@@ -1,4 +1,4 @@
-# Projeto Spring Inicial Básico
+# Projeto Spring Básico
 
 Projeto didático de uma api básica feita em Java, utilizando
 o Framework Spring. 
