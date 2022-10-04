@@ -6,6 +6,4 @@ A aplicação faz parte do curso: Java COMPLETO
 Programação Orientada a Objetos +Projetos, disponível
 na plataforma Udemy.
 
-Deploy rodando em:
-https://spring-application-javacourse.herokuapp.com/
 
